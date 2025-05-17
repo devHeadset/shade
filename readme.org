@@ -1,0 +1,55 @@
+* shade - gtk frontend for swww
+
+** installation
+
+*** recommended: manual build
+
+make sure you have these dependencies installed:
+
+- gtk+ 3 development libraries
+- gcc (c compiler)
+- pkg-config
+- swww (must be installed and accessible in your path)
+
+clone the project
+
+   git clone https://github.com/devHeadset/shade.git
+   cd shade
+
+
+
+then, in the project directory, compile with:
+
+  gcc main.c ui.c swww.c -o shade $(pkg-config --cflags --libs gtk+-3.0)
+
+run the app with:
+
+  ./shade
+
+*** nix
+
+1. ensure [nix](https://nixos.org/manual/nix/stable/) is installed with flakes enabled.
+
+2. clone this repository:
+
+   git clone https://github.com/devHeadset/shade.git
+   cd shade
+
+3. build the application:
+
+   nix build
+
+4. run the application:
+
+   ./result/bin/shade
+
+or run directly with:
+
+   nix run
+
+** dependencies
+
+- gtk+ 3
+- gcc (c compiler)
+- pkg-config
+- swww (must be installed and accessible in your path)
