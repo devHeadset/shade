@@ -2,8 +2,7 @@
 
 ** installation
 
-*** recommended: manual build
-
+*** building 
 make sure you have these dependencies installed:
 
 - gtk+ 3 development libraries
@@ -28,7 +27,7 @@ run the app with:
 
 *** nix
 
-1. ensure [nix](https://nixos.org/manual/nix/stable/) is installed with flakes enabled.
+1. ensure nix is installed with flakes enabled.
 
 2. clone this repository:
 
