@@ -11,19 +11,23 @@
       let
         pkgs = nixpkgs.legacyPackages.${system};
         gtkApp = pkgs.stdenv.mkDerivation {
-          pname = "swww-frontend";
-          version = "0.1";
+        pname = "shade";
+        version = "0.1";
 
-          src = ./.;
+  src = ./.;
 
-          buildInputs = with pkgs; [ gtk3 pkg-config ];
+  buildInputs = [ pkgs.stdenv.cc pkgs.gtk3 pkgs.pkg-config ];
 
-          installPhase = ''
-            mkdir -p $out/bin
-            gcc main.c -o $out/bin/swww-frontend `pkg-config --cflags --libs gtk+-3.0`
-          '';
-        };
-      in {
+  buildPhase = ''
+    gcc main.c ui.c swww.c -o shade $(pkg-config --cflags --libs gtk+-3.0)
+  '';
+
+  installPhase = ''
+      mkdir -p $out/bin
+     cp shade $out/bin/
+     '';
+ };
+     in {
         packages.default = gtkApp;
         apps.default = flake-utils.lib.mkApp {
           drv = gtkApp;
